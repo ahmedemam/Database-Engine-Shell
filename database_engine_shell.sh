@@ -12,6 +12,10 @@ initial_application_install()
     # mkdir -p $DATABASES_DIR :set directory application & databsaes in once
     # instead of 2 commands
     start_bash_prompt
+    clear
+    echo $'\e[0;1;32mWelcome to \e[0;1;36mm&aDB :) '
+        echo $'\e[0;1;31m==================='
+
     if [ ! -d "$ROOT_HOME_DIR" ]; then
         mkdir $DATABSES_DIR -p
         touch $USERS_FILES_PRIVILLAGES
@@ -22,22 +26,13 @@ initial_application_install()
     fi
     
 }
-
 #function for synatax error
 #if conditions for each word in the file
 
 start_app() {
     initial_application_install
-    command="'$*'"
-    
-    while [ ${command: -1} != ";" ]
-    do
-        read -p $'\e[0;1;36m>> ' command
-        echo $command >> ./currentCommand
-        #function to read the commands and start using cases
-    done
+    command="'     '"
     read_commands
-    
 }
 
 start_app
