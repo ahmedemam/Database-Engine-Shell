@@ -1,7 +1,5 @@
 #!/usr/bin/bash
-. ./change_prompt.sh
-. ./helpers.sh
-
+. helpers.sh
 ROOT_HOME_DIR="$HOME/Database_Engine_Shell_Source"
 DATABSES_DIR="$ROOT_HOME_DIR/Databases"
 USERS_FILES_PRIVILLAGES="$ROOT_HOME_DIR/users_data"
@@ -11,10 +9,9 @@ initial_application_install()
 {
     # mkdir -p $DATABASES_DIR :set directory application & databsaes in once
     # instead of 2 commands
-    start_bash_prompt
     clear
     echo $'\e[0;1;32mWelcome to \e[0;1;36mm&aDB :) '
-        echo $'\e[0;1;31m==================='
+        echo $'\e[0;1;31m==Please write========='
 
     if [ ! -d "$ROOT_HOME_DIR" ]; then
         mkdir $DATABSES_DIR -p
@@ -32,7 +29,9 @@ initial_application_install()
 start_app() {
     initial_application_install
     command="'     '"
+        `: > ./currentCommand`
     read_commands
+    # ratebook
 }
 
 start_app
