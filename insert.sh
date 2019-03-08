@@ -1,34 +1,4 @@
-get_primary_data () {
-    cols=(${meta//|/ })
-    for (( i=0; i<=${#cols[@]}-1; i++ ))
-    do
-        if [ ${cols[$i]} == "PRIMARY" ]
-        then
-            primary=${cols[$i+1]}
-            break
-        fi
-    done
-    #now get the field number we increment field by 5 and devide by 10
-    fieldNo=10
-    for field in "${cols[@]}"
-    do
-        if [ $field == $primary ]
-        then
-            let fieldNo=$fieldNo/10
-            break
-        fi
-        ((fieldNo+=5))
-    done
-    `cut -d "|" -f $fieldNo $table_name > primary_data`
-    primary_data=()
-    for w in $(<./primary_data)
-    do
-        primary_data+=( $w )
-    done
-    `rm primary_data`
-    
-}
-
+. get_primary_data.sh
 insert () {
     commands=( $(echo "$1") )
     if [ ${commands[1]} == "INTO" ]
@@ -45,12 +15,9 @@ insert () {
             data=()
             #data which will be inserted
             meta=`cat $table_meta`
-            #get the field number
-            #get the primary key
+            cols=(${meta//|/ })
             get_primary_data
-            # $fieldNo is the field number
-            
-            # loop through specific indecies of the array
+            # loop through specific indecies of the array which is the inserted data
             let j=2
             for (( i=4; i<=${#commands[@]}-1; i++ ))
             do
@@ -75,16 +42,16 @@ insert () {
                 fi
                 # the last element cocan be read as empty string so we ignore
             done
-                primary_key_data=${data[fieldNo-1]}
-                for primary_field in "${primary_data[@]}"
-                do
+            primary_key_data=${data[fieldNo-1]}
+            for primary_field in "${primary_data[@]}"
+            do
                 if [ $primary_key_data == $primary_field ]
                 then
-                echo $primary_key_data exists in $primary coulmn which is primary
-                read_commands
-                break
+                    echo $primary_key_data exists in $primary coulmn which is primary
+                    read_commands
+                    break
                 fi
-                done
+            done
             for field in "${data[@]}"
             do
                 echo -n "$field|" >> $table_name
@@ -92,9 +59,9 @@ insert () {
             echo -e >> $table_name
             read_commands
         else
-            echo Syntax error, table name must be followed by VALUE
+            echo insert syntax is INSERT INTO table_name VALUES data_by_order
         fi
     else
-        echo Syntax error, the second argument should be INTO
+        echo insert syntax is INSERT INTO table_name VALUES data_by_order
     fi
 }

@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 . create.sh
 . insert.sh
+. delete.sh
 read_commands () {
     # clear the file if the program open
     `: > ./currentCommand`
@@ -23,7 +24,7 @@ read_commands () {
             echo "$command" >> ./currentCommand
             if [ ${command: -1} = ";" ]
             then
-            #remove the ; from the commands file
+                #remove the ; from the commands file
                 truncate -s-2 ./currentCommand
                 break
             fi
@@ -52,8 +53,11 @@ read_commands () {
     elif [ ${commands[0]} == "INSERT" ]
     then
         insert "$(echo ${commands[@]})"
-        else 
-        echo synatax error 
+    elif [ ${commands[0]} == "DELETE" ]
+    then
+        delete "$(echo ${commands[@]})"
+    else
+        echo synatax error
         read_commands
     fi
     
