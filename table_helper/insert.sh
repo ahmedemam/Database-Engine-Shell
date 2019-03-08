@@ -1,4 +1,3 @@
-. read_data.sh
 insert () {
     commands=( $(echo "$1") )
     if [ ${commands[1]} == "INTO" ]
