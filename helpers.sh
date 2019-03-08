@@ -23,11 +23,11 @@ read_commands () {
             echo "$command" >> ./currentCommand
             if [ ${command: -1} = ";" ]
             then
+            #remove the ; from the commands file
                 truncate -s-2 ./currentCommand
                 break
             fi
         fi
-        # the ; should be after a space
         if [ ${#command} -gt 3 ] && [ ${command: -4} = "exit" ]
         then
             exec bash
@@ -52,6 +52,9 @@ read_commands () {
     elif [ ${commands[0]} == "INSERT" ]
     then
         insert "$(echo ${commands[@]})"
+        else 
+        echo synatax error 
+        read_commands
     fi
     
 }

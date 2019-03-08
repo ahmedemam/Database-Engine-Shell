@@ -9,3 +9,10 @@ ${#distro[@]}
 
 #last element in string 
 "${str: -1}"
+
+#read from file and put into array 
+    commands=()
+    for w in $(<./currentCommand)
+    do
+        commands+=( $w )
+    done

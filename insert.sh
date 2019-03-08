@@ -1,3 +1,34 @@
+get_primary_data () {
+    cols=(${meta//|/ })
+    for (( i=0; i<=${#cols[@]}-1; i++ ))
+    do
+        if [ ${cols[$i]} == "PRIMARY" ]
+        then
+            primary=${cols[$i+1]}
+            break
+        fi
+    done
+    #now get the field number we increment field by 5 and devide by 10
+    fieldNo=10
+    for field in "${cols[@]}"
+    do
+        if [ $field == $primary ]
+        then
+            let fieldNo=$fieldNo/10
+            break
+        fi
+        ((fieldNo+=5))
+    done
+    `cut -d "|" -f $fieldNo $table_name > primary_data`
+    primary_data=()
+    for w in $(<./primary_data)
+    do
+        primary_data+=( $w )
+    done
+    `rm primary_data`
+    
+}
+
 insert () {
     commands=( $(echo "$1") )
     if [ ${commands[1]} == "INTO" ]
@@ -12,7 +43,13 @@ insert () {
         if [ ${commands[3]} == "VALUES" ]
         then
             data=()
+            #data which will be inserted
             meta=`cat $table_meta`
+            #get the field number
+            #get the primary key
+            get_primary_data
+            # $fieldNo is the field number
+            
             # loop through specific indecies of the array
             let j=2
             for (( i=4; i<=${#commands[@]}-1; i++ ))
@@ -32,19 +69,29 @@ insert () {
                     let "j+=2"
                 else
                     echo out of range
+                    #that's because the value of j will be creater than the number of cols in
                     read_commands
                     break
                 fi
                 # the last element cocan be read as empty string so we ignore
             done
-            
-            for var in "${data[@]}"
+            for field in "${data[@]}"
             do
-                echo -n "$var|" >> $table_name
+                for primary_field in "${primary_data[@]}"
+                do
+                if [ $field == $primary_field ]
+                then
+                echo $field exists in $primary coulmn which is primary
+                break
+                fi
+                done
             done
-                        echo -e >> $table_name
+            for field in "${data[@]}"
+            do
+                echo -n "$field|" >> $table_name
+            done
+            echo -e >> $table_name
             read_commands
-            
         else
             echo Syntax error, table name must be followed by VALUE
         fi
