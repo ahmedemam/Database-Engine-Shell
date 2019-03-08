@@ -1,11 +1,14 @@
-. get_primary_data.sh
 delete () {
     commands=( $(echo "$1") )
+    if [ ${commands[4]} ] 
+    then
+        echo delete syntax should be DELETE FROM table_name primary_key
+                read_commands
+        else 
     if [ ${commands[1]} == "FROM" ]
     then
         table_name=${commands[2]}
         table_meta=${commands[2]}"_meta"
-        
         if [ ! -f $table_name ]; then
             echo "table is not exist "
             read_commands
@@ -23,7 +26,7 @@ delete () {
             if [ $primary_key == $primary_field ]
             then
                 delete_line=""$line_number"d"
-                `sed -i $delete_line wezza`
+                `sed -i $delete_line $table_name`
                 echo data has been deleted
                 read_commands
                 break
@@ -35,17 +38,9 @@ delete () {
             echo primary key doesn\'t exist
             read_commands
         fi
-        
-        
-        
-        
-        
-        
-        
-        
     else
-        echo delete syntax is DELETE FROM table_name primary_key
+        echo delete syntax should be DELETE FROM table_name primary_key
+        read_commands
     fi
-    
-    
+    fi
 }

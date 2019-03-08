@@ -1,4 +1,5 @@
 get_primary_data () {
+    data=()
     for (( i=0; i<=${#cols[@]}-1; i++ ))
     do
         if [ ${cols[$i]} == "PRIMARY" ]

@@ -1,7 +1,10 @@
 #!/usr/bin/bash
-. create.sh
-. insert.sh
-. delete.sh
+. table_helper/create.sh
+. table_helper/insert.sh
+. table_helper/delete.sh
+. table_helper/update.sh
+. table_helper/read_data.sh
+. table_helper/get_primary_data.sh
 read_commands () {
     # clear the file if the program open
     `: > ./currentCommand`
@@ -29,7 +32,7 @@ read_commands () {
                 break
             fi
         fi
-        if [ ${#command} -gt 3 ] && [ ${command: -4} = "exit" ]
+        if [ ${#command} -gt 3 ] && [ "${command: -4}" = "exit" ]
         then
             exec bash
         else
@@ -43,7 +46,6 @@ read_commands () {
     do
         commands+=( $w )
     done
-    echo
     # clear the document for the next set of
     
     `: > ./currentCommand`
@@ -56,8 +58,11 @@ read_commands () {
     elif [ ${commands[0]} == "DELETE" ]
     then
         delete "$(echo ${commands[@]})"
+    elif [ ${commands[0]} == "UPDATE" ]
+    then
+        update "$(echo ${commands[@]})"
     else
-        echo synatax error
+        echo ${commands[0]} is unkown command
         read_commands
     fi
     

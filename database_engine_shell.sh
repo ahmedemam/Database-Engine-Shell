@@ -1,9 +1,13 @@
 #!/usr/bin/bash
 . helpers.sh
+. table_helper/create.sh
+. table_helper/insert.sh
+. table_helper/delete.sh
+. table_helper/update.sh
+. table_helper/get_primary_data.sh
 ROOT_HOME_DIR="$HOME/Database_Engine_Shell_Source"
 DATABSES_DIR="$ROOT_HOME_DIR/Databases"
 USERS_FILES_PRIVILLAGES="$ROOT_HOME_DIR/users_data"
-
 # create files and folders for 1st time application
 initial_application_install()
 {
@@ -23,7 +27,7 @@ initial_application_install()
     fi
     
 }
-#function for synatax error
+#function for synatax errors
 #if conditions for each word in the file
 
 start_app() {
