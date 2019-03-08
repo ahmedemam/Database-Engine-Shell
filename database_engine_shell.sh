@@ -22,7 +22,6 @@ initial_application_install()
         cd "$ROOT_HOME_DIR"
     fi
 }
-
 #function for synatax error
 #if conditions for each word in the file
 
