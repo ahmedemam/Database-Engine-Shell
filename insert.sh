@@ -2,6 +2,7 @@ insert () {
     commands=( $(echo "$1") )
     if [ ${commands[1]} == "INTO" ]
     then
+        #get the table file and the meta data
         table_name=${commands[2]}
         table_meta=${commands[2]}"_meta"
         if [ ! -f $table_name ]; then
@@ -10,33 +11,42 @@ insert () {
         fi
         if [ ${commands[3]} == "VALUES" ]
         then
-        echo $table_meta
+            data=()
             meta=`cat $table_meta`
-            echo $meta
-
             # loop through specific indecies of the array
-            for (( i=4; i<=${#commands[@]}; i++ ))
+            let j=2
+            for (( i=4; i<=${#commands[@]}-1; i++ ))
             do
-
-                # the last element can be read as empty string so we ignore
-                if [[ ${commands[$i]} != "" ]]
+                # cut the fields
+                type=`cut -d "|" -f $j <<< $meta`
+                if [[ $type =~ [a-zA-Z]+ ]]
                 then
-               if [ $(($i % 2)) -eq "0" ]
+                    # check the datatype
+                    if ([ $type == "string" ] && [[ ${commands[$i]} =~ [a-zA-Z]+ ]]) || ([ $type == "int" ] && [[ ${commands[$i]} =~ [0-9]+ ]])
                     then
-                        #check the data type of the coulmns
-                        if [[ ${commands[$i]} != "int" ]] && [[ ${commands[$i]} != "string" ]]
-                        then
-                            echo please specify valid data
-                            read_commands
-                            break
-                        fi
+                        data+=( ${commands[$i]} )
+                    else
+                        echo invalid data type
+                        read_commands
                     fi
-                    echo -n "${commands[$i]}|" >> $table_name
+                    let "j+=2"
+                else
+                    echo out of range
+                    read_commands
+                    break
                 fi
+                # the last element cocan be read as empty string so we ignore
             done
+            
+            for var in "${data[@]}"
+            do
+                echo -n "$var|" >> $table_name
+            done
+                        echo -e >> $table_name
+            read_commands
+            
         else
             echo Syntax error, table name must be followed by VALUE
-
         fi
     else
         echo Syntax error, the second argument should be INTO
