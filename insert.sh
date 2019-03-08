@@ -75,17 +75,16 @@ insert () {
                 fi
                 # the last element cocan be read as empty string so we ignore
             done
-            for field in "${data[@]}"
-            do
+                primary_key_data=${data[fieldNo-1]}
                 for primary_field in "${primary_data[@]}"
                 do
-                if [ $field == $primary_field ]
+                if [ $primary_key_data == $primary_field ]
                 then
-                echo $field exists in $primary coulmn which is primary
+                echo $primary_key_data exists in $primary coulmn which is primary
+                read_commands
                 break
                 fi
                 done
-            done
             for field in "${data[@]}"
             do
                 echo -n "$field|" >> $table_name
