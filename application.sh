@@ -13,14 +13,15 @@ DATABASE_CURSOR=''
 
 . ./change_prompt.sh
 . ./general_helper.sh
-
+set -x
 # create files and folders for 1st time application
 function initial_application_install()
 {
     # mkdir -p $DATABASES_DIR :set directory application & databsaes in once
     # instead of 2 commands
     ####### MAKE THEM HIDDEN #######
-    start_bash_prompt
+    echo $'\e[0;1;32mWelcome to \e[0;1;36mm&aDB :) '
+    echo $'\e[0;1;31m====You can start writing commands======='
     if [[ ! -d "$ROOT_HOME_DIRECTORY" ]]; then
         mkdir ${DATABSES_DIR} -p
         touch ${USERS_FILES_PRIVILLAGES}
@@ -35,14 +36,16 @@ function initial_application_install()
 
 function start_application() {
     initial_application_install
-    command="'$*'"
-    while [[ ${command: -1} != ";" ]]
-    do
-        read -p $'\e[0;1;36m>> ' command
-        echo ${command} >> ./currentCommand
-        #function to read the commands and start using cases
-    done
+    command="'     '"
+        `: > ./currentCommand`
     read_commands
+    #  while [[ ${command: -1} != ";" ]]
+    # do
+    #     read -p $'\e[0;1;36m>> ' command
+    #     echo ${command} >> ./currentCommand
+    #     #function to read the commands and start using cases
+    # done
+    # read_commands
 }
 
 start_application
