@@ -1,13 +1,11 @@
-# sed -i '1s/.*/BBB/' wezza
-# var="${var}string"
-
 . read_data.sh
 update () {
     commands=( $(echo "$1") )
     if [ ${commands[1]} == "TABLE" ]
-    then
+    then 
         #check existance of table        primary_key=${commands[3]}
-        if [ ${commands[2]} ] && [ ${commands[3]} ] #checkc existance of argument
+        if [ ${commands[2]} ] && [ ${commands[3]} ] && [ ${commands[4]} ]
+        #check existance of argument
         then
             table_name=${commands[2]}
             table_meta=${commands[2]}"_meta"
@@ -26,10 +24,8 @@ update () {
             echo ${#primary_data[@]}
             for primary_field in "${primary_data[@]}"
             do
-                echo $primary_key ------- $primary_field
                 if [ $primary_key == $primary_field ]
                 then
-                    echo yeah
                     p_key_exists=1
                     break
                 fi
@@ -51,25 +47,11 @@ update () {
             sed_argument=""$line_number"s/.*/"$updated_row"/"
                         # sed -i '3s/.*/7|8|9/' wezza
             `sed -i $sed_argument $table_name`
-
-            
-            
-            
-            
-            
-            
-            read_commands
-            
-            
-            
         else
             echo update syntax should be UPDATE TABLE table_name primary_key data_by_order
         fi
     else
         echo update syntax should be UPDATE TABLE table_name primary_key data_by_order
     fi
-    
-    
-    
-    
+            read_commands
 }

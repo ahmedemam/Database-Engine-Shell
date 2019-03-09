@@ -3,6 +3,7 @@
 . table_helper/insert.sh
 . table_helper/delete.sh
 . table_helper/update.sh
+. table_helper/drop.sh
 . table_helper/read_data.sh
 . table_helper/get_primary_data.sh
 read_commands () {
@@ -61,6 +62,9 @@ read_commands () {
     elif [ ${commands[0]} == "UPDATE" ]
     then
         update "$(echo ${commands[@]})"
+    elif [ ${commands[0]} == "DROP" ]
+    then
+        drop "$(echo ${commands[@]})"
     else
         echo ${commands[0]} is unkown command
         read_commands

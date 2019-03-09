@@ -3,15 +3,17 @@ insert () {
     if [ ${commands[1]} == "INTO" ]
     then
         #get the table file and the meta data
-        if [ ${commands[2]} ] #checkc existance of argument
+        if [ ${commands[2]} ] 
+        #check existance of argument
         then
-            table_name=${commands[2]}
+            table_name=${commands[2]} 
             table_meta=${commands[2]}"_meta"
             if [ ! -f $table_name ]; then
                 echo "table is not exist "
                 read_commands
             fi
-            if [ ${commands[3]} == "VALUES" ] && [ ${commands[4]} ] #checkc existance of argument
+            if [ ${commands[3]} == "VALUES" ] && [ ${commands[4]} ]
+            #checkc existance of argument
             then
                 #data which will be inserted
                 meta=`cat $table_meta`
@@ -25,7 +27,6 @@ insert () {
                     echo -n "$field|" >> $table_name
                 done
                 echo -e >> $table_name
-                read_commands
             else
                 echo insert syntax should be INSERT INTO table_name VALUES data_by_order
             fi
