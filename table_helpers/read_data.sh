@@ -1,24 +1,26 @@
-read_data () {
+#!/usr/bin/env bash
+
+function read_data () {
     let j=2
     for (( i=4; i<=${#commands[@]}-1; i++ ))
     do
         # cut the fields
-        type=`cut -d "|" -f $j <<< $meta`
+        type=`cut -d "|" -f $j <<< ${meta}`
         let pr=$j-1
-        _primary=`cut -d "|" -f $pr <<< $meta`
-        if [[ $type =~ [a-zA-Z]+ ]] && [ $_primary != "PRIMARY" ]
+        _primary=`cut -d "|" -f ${pr} <<< ${meta}`
+        if [[ ${type} =~ [a-zA-Z]+ ]] && [[ ${_primary} != "PRIMARY" ]]
         then
             # check the datatype
-            if ([ $type == "string" ] && [[ ${commands[$i]} =~ [a-zA-Z]+ ]]) || ([ $type == "int" ] && [[ ${commands[$i]} =~ [0-9]+ ]])
+            if ([[ $type == "string" ]] && [[ ${commands[$i]} =~ [a-zA-Z]+ ]]) || ([[ ${type} == "int" ]] && [[ ${commands[$i]} =~ [0-9]+ ]])
             then
                 data+=( ${commands[$i]} )
             else
-                echo invalid data type
+                echo '#> INVALID DATATYPE'
                 read_commands
             fi
             let "j+=2"
         else
-            echo too many arguments
+            echo '#> TOO MANY ARGUMENTS.'
             #that's because the value of j will be creater than the number of cols in
             read_commands
             break
@@ -28,9 +30,9 @@ read_data () {
     primary_key_data=${data[fieldNo-1]}
     for primary_field in "${primary_data[@]}"
     do
-        if [ $primary_key_data == $primary_field ]
+        if [[ ${primary_key_data} == ${primary_field} ]]
         then
-            echo $primary_key_data exists in $primary coulmn which is primary
+            echo '#> ${primary_key_data} exists in ${primary} column which is primary.'
             read_commands
             break
         fi
@@ -38,9 +40,9 @@ read_data () {
     #check number of arguments
     #cols ${#cols[@]}
     let colNo="(${#cols[@]}-2)/2"
-    if [ ${#data[@]} -lt $colNo ]
+    if [[ ${#data[@]} -lt ${colNo} ]]
     then
-        echo small number of arguments
+        echo '#> TOO LITTLE ARGUMENTS.'
         read_commands
     fi
 }

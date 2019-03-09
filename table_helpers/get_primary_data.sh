@@ -1,8 +1,10 @@
-get_primary_data () {
+#!/usr/bin/env bash
+
+function get_primary_data () {
     data=()
     for (( i=0; i<=${#cols[@]}-1; i++ ))
     do
-        if [ ${cols[$i]} == "PRIMARY" ]
+        if [[ ${cols[$i]} == "PRIMARY" ]]
         then
             primary=${cols[$i+1]}
             break
@@ -12,18 +14,18 @@ get_primary_data () {
     fieldNo=10
     for field in "${cols[@]}"
     do
-        if [ $field == $primary ]
+        if [[ ${field} == ${primary} ]]
         then
             let fieldNo=$fieldNo/10
             break
         fi
         ((fieldNo+=5))
     done
-    `cut -d "|" -f $fieldNo $table_name > primary_data`
+    `cut -d "|" -f ${fieldNo} ${table_name} > primary_data`
     primary_data=()
     for w in $(<./primary_data)
     do
-        primary_data+=( $w )
+        primary_data+=( ${w} )
     done
     `rm primary_data`
 }
