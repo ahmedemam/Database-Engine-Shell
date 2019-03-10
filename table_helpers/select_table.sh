@@ -39,3 +39,4 @@ function select_all_from_table() {
 
 # TABLE META
 # COL.NAME|DATATYPE|COL.NAME|DATATYPE|PRIMARY|COL.NAME
+
