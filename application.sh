@@ -23,8 +23,8 @@ function initial_application_install()
     echo $'\e[0;1;32mWelcome to \e[0;1;36mm&aDB :) '
     echo $'\e[0;1;31m====You can start writing commands======='
     if [[ ! -d "$ROOT_HOME_DIRECTORY" ]]; then
-        mkdir ${DATABSES_DIR} -p
-        touch ${USERS_FILES_PRIVILLAGES}
+        mkdir ${DATABASES_DIRECTORY} -p
+        touch ${USERS_FILES_PRIVILEGES}
         cd "$ROOT_HOME_DIRECTORY"
         echo '#> installation succedded :) '
     else

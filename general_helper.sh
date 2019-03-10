@@ -57,19 +57,19 @@ function read_commands () {
     # clear the document for the next set of
 
     `: > ./currentCommand`
-   if [ ${commands[0]} == "CREATE" ]
+   if [[ ${commands[0]} == "CREATE" ]]
     then
         create_table "$(echo ${commands[@]})"
-    elif [ ${commands[0]} == "INSERT" ]
+    elif [[ ${commands[0]} == "INSERT" ]]
     then
         insert_into_table "$(echo ${commands[@]})"
-    elif [ ${commands[0]} == "DELETE" ]
+    elif [[ ${commands[0]} == "DELETE" ]]
     then
         delete_from_table "$(echo ${commands[@]})"
-    elif [ ${commands[0]} == "UPDATE" ]
+    elif [[ ${commands[0]} == "UPDATE" ]]
     then
         update_table "$(echo ${commands[@]})"
-    elif [ ${commands[0]} == "DROP" ]
+    elif [[ ${commands[0]} == "DROP" ]]
     then
         drop_table "$(echo ${commands[@]})"
     else
