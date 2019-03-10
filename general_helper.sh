@@ -21,9 +21,9 @@ function read_commands () {
         #check if the file is empty to change the prompt corresponding to its state
         if [[ ! -s $CURRENT_COMMAND ]]
         then
-            read -p $'\e[0;1;35mm&aDB\e[0;1;36m >> ' command
+            read -p $'\e[0;1;93m##_Shell> ' command
         else
-            read -p $'\e[0;1;36m.... ' command
+            read -p $'\e[38;5;100m....' command
         fi
         #check if he has pressed enter
         if [[ -z ${command} ]]
@@ -88,7 +88,7 @@ function read_commands () {
     then
         drop_table "$(echo ${commands[@]})"
     else
-        echo "#> SYNTAX ERROR:  input is unkown command."
+        printf "#> \e[41mSYNTAX ERROR:  input is unkown command.\e[49m\n"
         read_commands
     fi
 }

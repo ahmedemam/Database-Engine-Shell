@@ -22,20 +22,20 @@ function initial_application_install()
     # mkdir -p $DATABASES_DIR :set directory application & databsaes in once
     # instead of 2 commands
     ####### MAKE THEM HIDDEN #######
-    echo $'\e[0;1;32mWelcome to \e[0;1;36mm&aDB :) '
-    echo $'\e[0;1;31m====You can start writing commands======='
+    printf '\t\t\t \e[100m##### Welcome to Database Engine Shell ##### \e[49m \n'
+    printf '\t\t\t\t \e[48;5;22m##### START ENGINE ##### \e[49m\n'
     if [[ ! -d "$ROOT_HOME_DIRECTORY" ]]; then
         mkdir ${DATABASES_DIRECTORY} -p
         touch ${USERS_FILES_PRIVILEGES}
         cd "$ROOT_HOME_DIRECTORY"
-        echo '#> installation succedded :) '
+        printf '#> \e[92m installation succeeded:)\e[49m\n'
     else
         cd "$ROOT_HOME_DIRECTORY"
     fi
 }
+
 #function for synatax errors
 #if conditions for each word in the file
-
 function start_application() {
     initial_application_install
     command="'     '"
@@ -43,3 +43,6 @@ function start_application() {
     read_commands
 }
 start_application
+
+
+# username ahmed password 54654646

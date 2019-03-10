@@ -15,12 +15,12 @@ function read_data () {
             then
                 data+=( ${commands[$i]} )
             else
-                echo '#> INVALID DATATYPE'
+                printf '#> \e[41mINVALID DATATYPE\e[49m\n'
                 read_commands
             fi
             let "j+=2"
         else
-            echo '#> TOO MANY ARGUMENTS.'
+            printf '#> \e[41mTOO MANY ARGUMENTS.\e[49m\n'
             #that's because the value of j will be creater than the number of cols in
             read_commands
             break
@@ -32,7 +32,7 @@ function read_data () {
     do
         if [[ ${primary_key_data} == ${primary_field} ]]
         then
-            echo '#> ${primary_key_data} exists in ${primary} column which is primary.'
+            printf '#> \e[41m${primary_key_data} exists in ${primary} column which is primary.\e[49m\n'
             read_commands
             break
         fi
@@ -42,7 +42,7 @@ function read_data () {
     let colNo="(${#cols[@]}-2)/2"
     if [[ ${#data[@]} -lt ${colNo} ]]
     then
-        echo '#> TOO LITTLE ARGUMENTS.'
+        printf '#> \e[41mTOO LITTLE ARGUMENTS.\e[49m\n'
         read_commands
     fi
 }
