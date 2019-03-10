@@ -13,7 +13,7 @@ DATABASE_CURSOR=''
 
 . ./change_prompt.sh
 . ./general_helper.sh
-set -x
+
 # create files and folders for 1st time application
 function initial_application_install()
 {

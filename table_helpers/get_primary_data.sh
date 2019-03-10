@@ -10,7 +10,7 @@ function get_primary_data () {
             break
         fi
     done
-    #now get the field number we increment field by 5 and devide by 10
+    #now get the field number we increment field by 5 and davide by 10
     fieldNo=10
     for field in "${cols[@]}"
     do

@@ -57,7 +57,7 @@ function read_commands () {
     # clear the document for the next set of
 
     `: > ./currentCommand`
-   if [[ ${commands[0]} == "CREATE" ]]
+   if [[ ${commands[0]} == "CREATE" ]] && [[ ${commands[1]} == "TABLE" ]]
     then
         create_table "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "INSERT" ]]
@@ -72,8 +72,21 @@ function read_commands () {
     elif [[ ${commands[0]} == "DROP" ]]
     then
         drop_table "$(echo ${commands[@]})"
+
+    elif [[ ${commands[0]}  == "CREATE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
+    then
+        create_database "$(echo ${commands[2]})"
+    elif [[ ${commands[0]}  == "USE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
+    then
+        use_database "$(echo ${commands[2]})"
+    elif [[ ${commands[0]}  == "DROP" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
+    then
+        drop_database "$(echo ${commands[2]})"
+    elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
+    then
+        show_databases
     else
-        echo ${commands[0]} is unkown command
+        echo "#> SYNTAX ERROR:  input is unkown command."
         read_commands
     fi
 }

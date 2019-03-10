@@ -15,5 +15,5 @@ function show_databases() {
         GLOBAL_EXCEPTION="${GLOBAL_EXCEPTION}SORRY, NO DATABASES YET."
         echo "${GLOBAL_EXCEPTION}"
     fi
+    read_commands
 }
-show_databases
