@@ -2,7 +2,7 @@
 
 function create_table () {
     commands=( $(echo "$1") )
-    if [[ ${commands[1]} == "TABLE" ]]; then
+    if [[ ${commands[1]} == "TABLE" ]] && [[ ${commands[2]} ]] && [[ ${commands[3]} ]] && [[ ${commands[4]} ]]; then
         table_name=${commands[2]}"_meta"
         if [[ -f ${table_name} ]]; then
             GLOBAL_EXCEPTION="${GLOBAL_EXCEPTION} TABLE (NAME) ALREADY EXIST."
@@ -10,8 +10,8 @@ function create_table () {
             read_commands
         fi
         columns=()
-        touch ${commands[2]}
         touch "$table_name"
+        touch ${commands[2]}
         for (( i=3; i<=${#commands[@]}; i++ ))
         do
             if [[ ${commands[$i]} != "" ]]
@@ -21,6 +21,8 @@ function create_table () {
                     if [[ ${commands[$i]} != "int" ]] && [[ ${commands[$i]} != "string" ]]
                     then
                         echo "#> Please: Specify Valid Data Type."
+                        rm "$table_name"
+                        rm ${commands[2]}
                         read_commands
                         break
                     fi
@@ -40,7 +42,9 @@ function create_table () {
             break
         done
         echo "#> TABLE CREATED SUCCESSFULLY."
-        read_commands
+    else
+        echo '#> create syntax should be CREATE TABLE table_name col_name data_type.'
     fi
+        read_commands
 }
 

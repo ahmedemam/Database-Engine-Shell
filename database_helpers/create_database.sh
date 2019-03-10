@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-
 #. Create Database
 #. Parameters - Database Name
 function create_database() {

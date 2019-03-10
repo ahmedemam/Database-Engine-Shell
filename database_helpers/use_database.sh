@@ -5,7 +5,9 @@
 #. Parameters - Database Name
 function use_database() {
     if [[ -d "${DATABASES_DIRECTORY}/$1" ]]; then
-        DATABASE_CURSOR="${DATABASES_DIRECTORY}/$1"
+        directory=${DATABASES_DIRECTORY}/$1
+        cd $directory
+        `pwd`
         GLOBAL_MESSAGE="#> $1 DATABASE SELECTED SUCCESSFULLY."
         echo "${GLOBAL_MESSAGE}"
     else

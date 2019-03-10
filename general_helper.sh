@@ -15,11 +15,11 @@
 
 function read_commands () {
     # clear the file if the program open
-    `: > ./currentCommand`
+    `: > $CURRENT_COMMAND`
     while true
     do
         #check if the file is empty to change the prompt corresponding to its state
-        if [[ ! -s ./currentCommand ]]
+        if [[ ! -s $CURRENT_COMMAND ]]
         then
             read -p $'\e[0;1;35mm&aDB\e[0;1;36m >> ' command
         else
@@ -32,11 +32,11 @@ function read_commands () {
             continue
         else
             #append the command to the file
-            echo "$command" >> ./currentCommand
+            echo "$command" >> $CURRENT_COMMAND
             if [[ ${command: -1} = ";" ]]
             then
                 #remove the ; from the commands file
-                truncate -s-2 ./currentCommand
+                truncate -s-2 $CURRENT_COMMAND
                 break
             fi
         fi
@@ -48,16 +48,31 @@ function read_commands () {
         fi
         #function to read the commands and start using cases
     done
-
+    
     commands=()
-    for w in $(<./currentCommand)
+    for w in $(<$CURRENT_COMMAND)
     do
         commands+=( $w )
     done
     # clear the document for the next set of
-
-    `: > ./currentCommand`
-   if [[ ${commands[0]} == "CREATE" ]] && [[ ${commands[1]} == "TABLE" ]]
+    `: > $CURRENT_COMMAND`
+    if [[ ${commands[0]}  == "CREATE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
+    then
+        create_database "$(echo ${commands[2]})"
+    elif [[ ${commands[0]}  == "USE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
+    then
+        use_database "$(echo ${commands[2]})"
+    elif [[ ${commands[0]}  == "DROP" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
+    then
+        drop_database "$(echo ${commands[2]})"
+    elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
+    then
+        show_databases
+    elif [[ ${commands[0]} ]] && [[ "`pwd`/" == "$ROOT_HOME_DIRECTORY" ]]
+    then
+        echo please select database
+        read_commands
+    elif [[ ${commands[0]} == "CREATE" ]] && [[ ${commands[1]} == "TABLE" ]]
     then
         create_table "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "INSERT" ]]
@@ -72,19 +87,6 @@ function read_commands () {
     elif [[ ${commands[0]} == "DROP" ]]
     then
         drop_table "$(echo ${commands[@]})"
-
-    elif [[ ${commands[0]}  == "CREATE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
-    then
-        create_database "$(echo ${commands[2]})"
-    elif [[ ${commands[0]}  == "USE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
-    then
-        use_database "$(echo ${commands[2]})"
-    elif [[ ${commands[0]}  == "DROP" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
-    then
-        drop_database "$(echo ${commands[2]})"
-    elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
-    then
-        show_databases
     else
         echo "#> SYNTAX ERROR:  input is unkown command."
         read_commands
