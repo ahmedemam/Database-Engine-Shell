@@ -12,6 +12,8 @@ GLOBAL_EXCEPTION='#> exception:'
 GLOBAL_MESSAGE='#> '
 # Database Use/In Now
 DATABASE_CURSOR=''
+# CURRENT RUNNING FILE : application.sh
+CURRENT_RUNNER="$PWD/application.sh"
 
 . ./general_helper.sh
 

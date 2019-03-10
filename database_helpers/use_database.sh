@@ -7,7 +7,7 @@ function use_database() {
     if [[ -d "${DATABASES_DIRECTORY}/$1" ]]; then
         directory=${DATABASES_DIRECTORY}/$1
         cd $directory
-        DATABASE_CURSOR="$1"
+        DATABASE_CURSOR="IN> $1> "
         GLOBAL_MESSAGE="#> \e[32m$1 DATABASE SELECTED SUCCESSFULLY.\e[93m\n"
         printf "${GLOBAL_MESSAGE}"
     else

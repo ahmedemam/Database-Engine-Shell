@@ -25,7 +25,7 @@ function read_commands () {
         #check if the file is empty to change the prompt corresponding to its state
         if [[ ! -s $CURRENT_COMMAND ]]
         then
-            read -p $"\e[0;1;93m##_Shell>${DATABASE_CURSOR}> " command
+            read -p $'\e[0;1;93m##_Shell>'"${DATABASE_CURSOR}" command
         else
             read -p $'\e[38;5;100m....' command
         fi

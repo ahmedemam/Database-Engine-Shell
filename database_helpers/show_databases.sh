@@ -5,7 +5,7 @@
 #. Parameters - No Parameters - Just Call
 function show_databases() {
     if [[ -d "${DATABASES_DIRECTORY}" ]]; then
-        printf '#> DATABASES'
+        printf '#> DATABASES: \n'
         for database_dir in ${DATABASES_DIRECTORY}/* ; do
             if [[ -d ${database_dir} ]]; then
                 printf ".> \e[42m${database_dir##*/}\e[49m\n"

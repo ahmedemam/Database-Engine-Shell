@@ -3,6 +3,8 @@
   <component name="BashSupportProjectSettings">
     <option name="globalVariables">
       <set>
+        <option value="CURRENT_COMMAND" />
+        <option value="Green" />
         <option value="iter" />
       </set>
     </option>

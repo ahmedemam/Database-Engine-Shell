@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
 function clear_screen(){
-    echo -e "\e[3J"
+    #crontab -e
     clear
+    @reboot sh "./${CURRENT_RUNNER}"
+    sleep 1
 }
 
 
-clear_screen
+
+#    echo -en "$Green ✔ $Color_Off "
+#    echo -en "$Red ✘ $Color_Off "

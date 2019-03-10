@@ -36,7 +36,3 @@ function select_all_from_table() {
     fi
     read_commands
 }
-
-# TABLE META
-# COL.NAME|DATATYPE|COL.NAME|DATATYPE|PRIMARY|COL.NAME
-
