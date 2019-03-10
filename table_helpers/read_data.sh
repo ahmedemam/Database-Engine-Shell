@@ -11,7 +11,7 @@ function read_data () {
         if [[ ${type} =~ [a-zA-Z]+ ]] && [[ ${_primary} != "PRIMARY" ]]
         then
             # check the datatype
-            if ([[ $type == "string" ]] && [[ ${commands[$i]} =~ [a-zA-Z]+ ]]) || ([[ ${type} == "int" ]] && [[ ${commands[$i]} =~ [0-9]+ ]])
+            if ([[ $type == "string" ]] && ( [[ ${commands[$i]} =~ [a-zA-Z]+ ]] || [[ ${commands[$i]} == "-" ]])) || ([[ ${type} == "int" ]] && ( [[ ${commands[$i]} =~ [0-9]+ ]] || [[ ${commands[$i]} == "-" ]]))
             then
                 data+=( ${commands[$i]} )
             else
@@ -28,11 +28,17 @@ function read_data () {
         # the last element coan be read as empty string so we ignore
     done
     primary_key_data=${data[fieldNo-1]}
+            if [[ ${primary_key_data} == "-" ]]
+        then
+            printf '#> \e[38;5;204mPrimary Key Cannot be null value\e[49m\n'
+            read_commands
+            break
+        fi
     for primary_field in "${primary_data[@]}"
     do
         if [[ ${primary_key_data} == ${primary_field} ]]
         then
-            printf '#> \e[41m${primary_key_data} exists in ${primary} column which is primary.\e[49m\n'
+            printf '#> \e[38;5;204m${primary_key_data} exists in ${primary} column which is primary.\e[49m\n'
             read_commands
             break
         fi

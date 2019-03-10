@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Root Home Directory
-ROOT_HOME_DIRECTORY="$HOME/Database_Engine_Shell_Source/"
+ROOT_HOME_DIRECTORY="$HOME/Database_Engine_Shell_Source"
 # Database Directory
-DATABASES_DIRECTORY="${ROOT_HOME_DIRECTORY}Databases"
+DATABASES_DIRECTORY="${ROOT_HOME_DIRECTORY}/Databases"
 # Users Database List File
 USERS_FILES_PRIVILEGES="$ROOT_HOME_DIRECTORY/users_data"
 #Current Command File
@@ -15,7 +15,6 @@ GLOBAL_MESSAGE='#> '
 DATABASE_CURSOR=''
 
 . ./general_helper.sh
-
 # create files and folders for 1st time application
 function initial_application_install()
 {

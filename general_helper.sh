@@ -71,7 +71,7 @@ function read_commands () {
     elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
     then
         show_databases
-    elif [[ ${commands[0]} ]] && [[ "`pwd`/" == "$ROOT_HOME_DIRECTORY" ]] && ( [[ ${commands[1]} == "DATABASE" ]] || [[ ${commands[1]} == "DATABASES" ]] )
+    elif ([[ ${commands[0]}  != "SHOW" ]] && [[ ${commands[0]}  != "DROP" ]] && [[ ${commands[0]}  != "USE" ]] && ([[ ${commands[0]}  != "CREATE" ]] && [[ ${commands[1]}  == "DATABASE" ]])) && [[ "`pwd`" == "$ROOT_HOME_DIRECTORY" ]]
     then
         echo "#> please select database"
         read_commands
@@ -79,7 +79,7 @@ function read_commands () {
     then
         create_table "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "INSERT" ]]
-    then
+    then 
         insert_into_table "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "DELETE" ]]
     then
@@ -101,7 +101,7 @@ function read_commands () {
     then
         drop_table "$(echo ${commands[@]})"
     else
-        printf "#> \e[41mSYNTAX ERROR:  input is unkown command.\e[49m\n"
+        printf "#>\e[38;5;196mSYNTAX ERROR:  input is unkown command.\e[49m\n"
         read_commands
     fi
 }

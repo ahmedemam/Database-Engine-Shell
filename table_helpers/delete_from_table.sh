@@ -12,7 +12,7 @@ function delete_from_table () {
         table_name=${commands[2]}
         table_meta=${commands[2]}"_meta"
         if [[ ! -f ${table_name} ]]; then
-            printf "#> \e[41mTABLE NOT EXIST.\e[49m\n"
+            printf "#> \e[38;5;196mTABLE NOT EXIST.\e[49m\n"
             read_commands
         fi
         #get the primary key data
@@ -41,7 +41,7 @@ function delete_from_table () {
             read_commands
         fi
     else
-        printf '#> \e[41mdelete syntax error: should be DELETE FROM table_name primary_key\e[49m\n'
+        printf '#> \e[38;5;196mdelete syntax error: should be DELETE FROM table_name primary_key\e[49m\n'
         read_commands
     fi
     fi

@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
-
-
 # select all from tableName: 4 parameters
 # select row from tableName primary value: 6 paramters
-
 function select_all_from_table() {
     if [[ $1 ]]; then
         TABLE_META="$1_meta"
@@ -17,24 +14,25 @@ function select_all_from_table() {
         do
             if [[ "${Array[i]}" != "int" ]] && [[ "${Array[i]}" != "string" ]] && [[ "${Array[i]}" != "PRIMARY" ]];
             then
-                    printf "\t\t ${Array[i]}"
+                printf "\t\t ${Array[i]}"
             fi
         done
-            printf "\n"
+        printf "\n"
         # Table Content Printing
         while read -r line; do
-           set -- "${line}"
-           IFS="|"; declare -a Array=($*)
-           for (( i=0; i<${#Array[@]}; i++ ))
-           do
+            set -- "${line}"
+            IFS="|"; declare -a Array=($*)
+            for (( i=0; i<${#Array[@]}; i++ ))
+            do
                 printf "\e[38;5;255m\t\t ${Array[i]}"
-           done
-           printf "\n\e[0;1;93m"
+            done
+            printf "\n\e[0;1;93m"
         done < "${TABLE_NAME}"
     else
-        printf "#>\e[41m SYNTAX ERROR.\e[41m\n"
+        printf "#>\e[38;5;196m SYNTAX ERROR.\e[38;5;196m"
     fi
-    read_commands
+    unset IFS
+            read_commands
 }
 
 # TABLE META

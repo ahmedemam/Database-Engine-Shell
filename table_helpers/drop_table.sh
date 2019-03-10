@@ -6,10 +6,13 @@ function drop_table () {
     then
         table_name=${commands[2]}
         table_meta=${commands[2]}"_meta"
-        `rm ${table_name}`
-        `rm ${table_meta}`
+        if [[ ! -d ${table_name} ]]
+        then
+            `rm ${table_name}`
+            `rm ${table_meta}`
+        fi
     else
-        printf "#> \e[41mSyntax error: DROP TABLE table_name\e[49m\n"
+        printf "#> \e[38;5;196mSyntax error: DROP TABLE table_name\e[49m\n"
     fi
     read_commands
 }
