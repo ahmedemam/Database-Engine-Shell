@@ -4,7 +4,7 @@
 
 # TABLE_NAME PRIMARY_NAME PRIMARY_VALUE
 function select_row(){
-    if [[ $@ -eq 1 ]]; then
+    if [[ $# -eq 2 ]]; then
     TABLE_NAME=$1
     PRIMARY_VALUE=$2
     # ------------------------------
@@ -44,4 +44,5 @@ function select_row(){
     else
         printf "#> SYNTAX ERROR."
     fi
+    read_commands
 }

@@ -8,7 +8,8 @@
 . ./table_helpers/read_data.sh
 . ./table_helpers/select_table.sh
 . ./table_helpers/update_table.sh
-. ./table_helpers/select_one.sh
+# . ./table_helpers/select_one.sh
+. ./table_helpers/select_row.sh
 . ./database_helpers/create_database.sh
 . ./database_helpers/use_database.sh
 . ./database_helpers/drop_database.sh
@@ -70,9 +71,9 @@ function read_commands () {
     elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
     then
         show_databases
-    elif [[ ${commands[0]} ]] && [[ "`pwd`/" == "$ROOT_HOME_DIRECTORY" ]]
+    elif [[ ${commands[0]} ]] && [[ "`pwd`/" == "$ROOT_HOME_DIRECTORY" ]] && ( [[ ${commands[1]} == "DATABASE" ]] || [[ ${commands[1]} == "DATABASES" ]] )
     then
-        echo please select database
+        echo "#> please select database"
         read_commands
     elif [[ ${commands[0]} == "CREATE" ]] && [[ ${commands[1]} == "TABLE" ]]
     then
@@ -86,9 +87,13 @@ function read_commands () {
     elif [[ ${commands[0]} == "SELECT" ]] && [[ ${commands[1]} == "ALL" ]] && [[ ${#commands[@]} -eq 4 ]]
     then
         select_all_from_table "$(echo ${commands[3]})"
-            elif [[ ${commands[0]} == "SELECT" ]] && [[ ${commands[1]} == "ROW" ]]
+        #         elif [[ ${commands[0]} == "SELECT" ]] && [[ ${commands[1]} == "ROW" ]]
+        # then
+        #     select_one "$(echo ${commands[@]})"
+        
+    elif [[ ${commands[0]} == "SELECT" ]] && [[ ${commands[1]} == "ROW" ]] && [[ ${commands[2]} == "FROM" ]] && [[ ${#commands[@]} -eq 5 ]]
     then
-        select_one "$(echo ${commands[@]})"
+        select_row "$(echo ${commands[3]})" "$(echo ${commands[4]})"
     elif [[ ${commands[0]} == "UPDATE" ]]
     then
         update_table "$(echo ${commands[@]})"
