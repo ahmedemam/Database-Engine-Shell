@@ -7,7 +7,6 @@ DATABASES_DIRECTORY="${ROOT_HOME_DIRECTORY}Databases"
 USERS_FILES_PRIVILEGES="$ROOT_HOME_DIRECTORY/users_data"
 #Current Command File
 CURRENT_COMMAND="$ROOT_HOME_DIRECTORY/currentCommand"
-
 # Global Error/Exception
 GLOBAL_EXCEPTION='#> exception:'
 GLOBAL_MESSAGE='#> '
