@@ -36,7 +36,7 @@ function create_table () {
         select col in ${columns[@]}
         do
             printf "$col selected"
-            printf -n "PRIMARY|$col" >> ${table_name}
+            echo -n "PRIMARY|$col" >> ${table_name}
             break
         done
         printf "#> \e[42mTABLE CREATED SUCCESSFULLY.\e[49m\n"

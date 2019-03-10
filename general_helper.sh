@@ -6,7 +6,9 @@
 . ./table_helpers/get_primary_data.sh
 . ./table_helpers/insert_into_table.sh
 . ./table_helpers/read_data.sh
+. ./table_helpers/select_table.sh
 . ./table_helpers/update_table.sh
+. ./table_helpers/select_one.sh
 . ./database_helpers/create_database.sh
 . ./database_helpers/use_database.sh
 . ./database_helpers/drop_database.sh
@@ -81,6 +83,12 @@ function read_commands () {
     elif [[ ${commands[0]} == "DELETE" ]]
     then
         delete_from_table "$(echo ${commands[@]})"
+    elif [[ ${commands[0]} == "SELECT" ]] && [[ ${commands[1]} == "ALL" ]] && [[ ${#commands[@]} -eq 4 ]]
+    then
+        select_all_from_table "$(echo ${commands[3]})"
+            elif [[ ${commands[0]} == "SELECT" ]] && [[ ${commands[1]} == "ROW" ]]
+    then
+        select_one "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "UPDATE" ]]
     then
         update_table "$(echo ${commands[@]})"

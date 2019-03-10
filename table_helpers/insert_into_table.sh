@@ -26,9 +26,9 @@ function insert_into_table () {
                 #write the data
                 for field in "${data[@]}"
                 do
-                    printf -n "$field|" >> ${table_name}
+                    echo -n "$field|" >> ${table_name}
                 done
-                printf -e >> ${table_name}
+                echo -e >> ${table_name}
             else
                 printf '#> \e[41mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
             fi

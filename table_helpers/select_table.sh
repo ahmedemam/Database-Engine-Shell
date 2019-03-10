@@ -9,27 +9,27 @@ function select_all_from_table() {
         TABLE_META="$1_meta"
         TABLE_NAME="$1"
         # Metadata Printing
-        META_DATA=$(<TABLE_META)
+        META_DATA=`cat ${TABLE_META}`
         set -- "$META_DATA"
         IFS="|"; declare -a Array=($*)
-        printf "#> TABLE: ${1}:\n"
+        printf "#> TABLE: $TABLE_NAME:\n"
         for (( i=0; i<${#Array[@]}-2; i++ ))
         do
-            if [[ "${Array[i]}" != "int" ]] || [[ "${Array[i]}" != "string" ]] || [[ "${Array[i]}" != "PRIMARY" ]];
+            if [[ "${Array[i]}" != "int" ]] && [[ "${Array[i]}" != "string" ]] && [[ "${Array[i]}" != "PRIMARY" ]];
             then
-                    printf "\t ${Array[i]}"
+                    printf "\t\t ${Array[i]}"
             fi
-            printf "\n"
         done
+            printf "\n"
         # Table Content Printing
         while read -r line; do
            set -- "${line}"
            IFS="|"; declare -a Array=($*)
            for (( i=0; i<${#Array[@]}; i++ ))
            do
-                printf "\t ${Array[i]}"
+                printf "\e[38;5;255m\t\t ${Array[i]}"
            done
-           printf "\n"
+           printf "\n\e[0;1;93m"
         done < "${TABLE_NAME}"
     else
         printf "#>\e[41m SYNTAX ERROR.\e[41m\n"

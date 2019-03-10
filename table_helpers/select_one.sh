@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-
-function delete_from_table () {
+function select_one () {
     commands=( $(printf "$1") )
-    if [[ ${commands[4]} ]] || [[ ! ${commands[2]} ]] || [[ ! ${commands[3]} ]]
+    if [[ ${commands[5]} ]] || [[ ! ${commands[2]} ]] || [[ ! ${commands[3]} ]] || [[ ! ${commands[4]} ]]
     then
-        printf delete syntax should be DELETE FROM table_name primary_key
+        printf select one syntax should be SELECT ROW FROM table_name primary_key
                 read_commands
         else
-    if [[ ${commands[1]} == "FROM" ]]
+    if [[ ${commands[1]} == "ROW" ]] && [[ ${commands[2]} == "FROM" ]]
     then
-        table_name=${commands[2]}
-        table_meta=${commands[2]}"_meta"
+        table_name=${commands[3]}
+        table_meta=${commands[3]}"_meta"
         if [[ ! -f ${table_name} ]]; then
             printf "#> \e[41mTABLE NOT EXIST.\e[49m\n"
             read_commands
@@ -20,16 +19,15 @@ function delete_from_table () {
         cols=(${meta//|/ })
         get_primary_data
         #check existence of primary key
-        primary_key=${commands[3]}
+        primary_key=${commands[4]}
         p_key_exists=0
         line_number=1
         for primary_field in "${primary_data[@]}"
         do
             if [[ ${primary_key} == ${primary_field} ]]
             then
-                delete_line=""$line_number"d"
-                `sed -i ${delete_line} ${table_name}`
-                printf data has been deleted
+                show_number=""$line_number"p"
+                sed -n ${show_number} ${table_name}
                 read_commands
                 break
             fi
