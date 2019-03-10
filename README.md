@@ -1,5 +1,5 @@
 ## Database Engine
-You can use the following commands ( case sensitive )
+You can use the following commands ( case sensitive )\n
 CREATE DATABASE db_name
 USE DATABASE db_name
 DROP DATABASE db_name
