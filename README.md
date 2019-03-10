@@ -1,35 +1,36 @@
 ## Database Engine
 
 You can use the following commands ( case sensitive )
+ADD ; after writing any command
+CREATE DATABASE db_name;
 
-CREATE DATABASE db_name
+USE DATABASE db_name;
 
-USE DATABASE db_name
+DROP DATABASE db_name;
 
-DROP DATABASE db_name
-
-SHOW DATABASES
+SHOW DATABASES;
 
 
 ...
 
-CREATE TABLE table_name col_name data_type col_name data_type 
+CREATE TABLE table_name col_name data_type col_name data_type ;
 
-and it will ask for the primary key 
+and it will ask for the primary key ;
 
-INSERT INTO table_name VALUES data data 
+INSERT INTO table_name VALUES data data ;
 
-You can use - for null values 
+You can use - for null values ;
 
-UPDATE TABLE table_name primary_key data data data
+UPDATE TABLE table_name primary_key data data data;
 
-DELETE FROM TABLE primary_key
+DELETE FROM TABLE primary_key;
 
-DROP TABLE table_name
+DROP TABLE table_name;
 
-SELECT ALL FROM table_name
+SELECT ALL FROM table_name;
 
-SELECT ROW FROM table_name primary_key
+SELECT ROW FROM table_name primary_key;
 
-EXIT to exit application
+EXIT;
+to exit application
 
