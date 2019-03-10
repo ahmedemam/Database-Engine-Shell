@@ -5,11 +5,11 @@
 function drop_database() {
     if [[ -d "${DATABASES_DIRECTORY}/$1" ]]; then
         rm -r "${DATABASES_DIRECTORY}/$1"
-        GLOBAL_MESSAGE="#> $1 DATABASE DROPPED SUCCESSFULLY."
-        echo "${GLOBAL_MESSAGE}"
+        GLOBAL_MESSAGE="#> \e[42m $1 DATABASE DROPPED SUCCESSFULLY.\e[49m\n"
+        printf "${GLOBAL_MESSAGE}"
     else
-        GLOBAL_EXCEPTION="#> $1 DATABASE NOT EXIST."
-        echo "${GLOBAL_EXCEPTION}"
+        GLOBAL_EXCEPTION="#> \e[41m $1 DATABASE NOT EXIST.\e[49m\n"
+        printf "${GLOBAL_EXCEPTION}"
     fi
     read_commands
 }

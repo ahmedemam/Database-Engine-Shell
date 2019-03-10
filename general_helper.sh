@@ -21,9 +21,9 @@ function read_commands () {
         #check if the file is empty to change the prompt corresponding to its state
         if [[ ! -s ./currentCommand ]]
         then
-            read -p $'\e[0;1;35mm&aDB\e[0;1;36m >> ' command
+            read -p $'##_Shell> ' command
         else
-            read -p $'\e[0;1;36m.... ' command
+            read -p $'....' command
         fi
         #check if he has pressed enter
         if [[ -z ${command} ]]
@@ -32,7 +32,7 @@ function read_commands () {
             continue
         else
             #append the command to the file
-            echo "$command" >> ./currentCommand
+            printf "$command" >> ./currentCommand
             if [[ ${command: -1} = ";" ]]
             then
                 #remove the ; from the commands file
@@ -59,34 +59,34 @@ function read_commands () {
     `: > ./currentCommand`
    if [[ ${commands[0]} == "CREATE" ]] && [[ ${commands[1]} == "TABLE" ]]
     then
-        create_table "$(echo ${commands[@]})"
+        create_table "$(printf ${commands[@]})"
     elif [[ ${commands[0]} == "INSERT" ]]
     then
-        insert_into_table "$(echo ${commands[@]})"
+        insert_into_table "$(printf ${commands[@]})"
     elif [[ ${commands[0]} == "DELETE" ]]
     then
-        delete_from_table "$(echo ${commands[@]})"
+        delete_from_table "$(printf ${commands[@]})"
     elif [[ ${commands[0]} == "UPDATE" ]]
     then
-        update_table "$(echo ${commands[@]})"
+        update_table "$(printf ${commands[@]})"
     elif [[ ${commands[0]} == "DROP" ]]
     then
-        drop_table "$(echo ${commands[@]})"
+        drop_table "$(printf ${commands[@]})"
 
     elif [[ ${commands[0]}  == "CREATE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
     then
-        create_database "$(echo ${commands[2]})"
+        create_database "$(printf ${commands[2]})"
     elif [[ ${commands[0]}  == "USE" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
     then
-        use_database "$(echo ${commands[2]})"
+        use_database "$(printf ${commands[2]})"
     elif [[ ${commands[0]}  == "DROP" ]] && [[ ${commands[1]} == "DATABASE" ]] && [[ ${#commands[@]} -eq 3 ]]
     then
-        drop_database "$(echo ${commands[2]})"
+        drop_database "$(printf ${commands[2]})"
     elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
     then
         show_databases
     else
-        echo "#> SYNTAX ERROR:  input is unkown command."
+        printf "#> \e[41mSYNTAX ERROR:  input is unkown command.\e[49m\n"
         read_commands
     fi
 }

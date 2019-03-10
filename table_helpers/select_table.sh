@@ -15,6 +15,6 @@ function select_all_table() {
     # get columns of specfiic table
 
     else
-        echo '#> WRONG PARAMETERS.'
+        printf '#> \e[41mWRONG PARAMETERS.\e[49m\n'
     fi
 }

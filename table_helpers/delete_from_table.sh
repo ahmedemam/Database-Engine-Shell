@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 function delete_from_table () {
-    commands=( $(echo "$1") )
+    commands=( $(printf "$1") )
     if [[ ${commands[4]} ]] || [[ ! ${commands[2]} ]] || [[ ! ${commands[3]} ]]
     then
-        echo delete syntax should be DELETE FROM table_name primary_key
+        printf delete syntax should be DELETE FROM table_name primary_key
                 read_commands
         else
     if [[ ${commands[1]} == "FROM" ]]
@@ -12,7 +12,7 @@ function delete_from_table () {
         table_name=${commands[2]}
         table_meta=${commands[2]}"_meta"
         if [[ ! -f ${table_name} ]]; then
-            echo "#> TABLE NOT EXIST."
+            printf "#> \e[41mTABLE NOT EXIST.\e[49m\n"
             read_commands
         fi
         #get the primary key data
@@ -29,7 +29,7 @@ function delete_from_table () {
             then
                 delete_line=""$line_number"d"
                 `sed -i ${delete_line} ${table_name}`
-                echo data has been deleted
+                printf data has been deleted
                 read_commands
                 break
             fi
@@ -37,11 +37,11 @@ function delete_from_table () {
         done
         if [[ ${p_key_exists} -eq 0 ]]
         then
-            echo primary key doesn\'t exist
+            printf primary key doesn\'t exist
             read_commands
         fi
     else
-        echo '#> delete syntax erro: should be DELETE FROM table_name primary_key'
+        printf '#> \e[41mdelete syntax erro: should be DELETE FROM table_name primary_key\e[49m\n'
         read_commands
     fi
     fi

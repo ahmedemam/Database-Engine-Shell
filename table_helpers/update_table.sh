@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function update_table () {
-    commands=( $(echo "$1") )
+    commands=( $(printf "$1") )
     if [[ ${commands[1]} == "TABLE" ]]
     then
         #check existence of table : primary_key=${commands[3]}
@@ -11,7 +11,7 @@ function update_table () {
             table_name=${commands[2]}
             table_meta=${commands[2]}"_meta"
             if [[ ! -f ${table_name} ]]; then
-                echo '#> TABLE NOT EXIST.'
+                printf '#> \e[41m TABLE NOT EXIST.\e[49m\n'
                 read_commands
             fi
             #check primary key and get line the array name is primary_data
@@ -22,7 +22,7 @@ function update_table () {
             #get line number
             p_key_exists=0
             line_number=1
-            echo ${#primary_data[@]}
+            printf ${#primary_data[@]}
             for primary_field in "${primary_data[@]}"
             do
                 if [[ ${primary_key} == ${primary_field} ]]
@@ -35,7 +35,7 @@ function update_table () {
             #check if primary key exists
             if [[ ${p_key_exists} -eq 0 ]]
             then
-                echo primary key doesn\'t exist
+                printf primary key doesn\'t exist
                 read_commands
             fi
             #get data
@@ -49,10 +49,10 @@ function update_table () {
             # sed -i '3s/.*/7|8|9/' wezza
             `sed -i ${sed_argument} $table_name`
         else
-            echo '#> update syntax error: should be UPDATE TABLE table_name primary_key data_by_order'
+            printf '#> \e[41m Update syntax error: should be UPDATE TABLE table_name primary_key data_by_order\e[49m\n'
         fi
     else
-        echo '#> update syntax error: should be UPDATE TABLE table_name primary_key data_by_order'
+        printf '#> \e[41m Update syntax error: should be UPDATE TABLE table_name primary_key data_by_order\e[49m\n'
     fi
     read_commands
 }

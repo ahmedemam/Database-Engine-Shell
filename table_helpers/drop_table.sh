@@ -9,7 +9,7 @@ function drop_table () {
         `rm ${table_name}`
         `rm ${table_meta}`
     else
-        echo "#> syntax error: DROP TABLE table_name"
+        printf "#> \e[41mSyntax error: DROP TABLE table_name\e[49m\n"
     fi
     read_commands
 }

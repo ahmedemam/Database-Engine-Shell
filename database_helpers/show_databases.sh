@@ -5,15 +5,15 @@
 #. Parameters - No Parameters - Just Call
 function show_databases() {
     if [[ -d "${DATABASES_DIRECTORY}" ]]; then
-        echo '#> DATABASES'
+        printf '#> DATABASES'
         for database_dir in ${DATABASES_DIRECTORY}/* ; do
             if [[ -d ${database_dir} ]]; then
-                echo ".> ${database_dir##*/}"
+                printf ".> \e[42m${database_dir##*/}\e[49m\n"
             fi
         done
     else
-        GLOBAL_EXCEPTION="${GLOBAL_EXCEPTION}SORRY, NO DATABASES YET."
-        echo "${GLOBAL_EXCEPTION}"
+        GLOBAL_EXCEPTION="#> \e[41mSORRY, NO DATABASES YET.\e[49m\n"
+        printf "${GLOBAL_EXCEPTION}"
     fi
     read_commands
 }

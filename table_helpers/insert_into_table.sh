@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function insert_into_table () {
-    commands=( $(echo "$1") )
+    commands=( $(printf "$1") )
     if [[ ${commands[1]} == "INTO" ]]
     then
         #get the table file and the meta data
@@ -11,7 +11,7 @@ function insert_into_table () {
             table_name=${commands[2]}
             table_meta=${commands[2]}"_meta"
             if [[ ! -f ${table_name} ]]; then
-                echo "#> TABLE NOT EXIST."
+                printf "#> \e[41mTABLE NOT EXIST.\e[49m\n"
                 read_commands
             fi
             if [[ ${commands[3]} == "VALUES" ]] && [[ ${commands[4]} ]]
@@ -26,17 +26,17 @@ function insert_into_table () {
                 #write the data
                 for field in "${data[@]}"
                 do
-                    echo -n "$field|" >> ${table_name}
+                    printf -n "$field|" >> ${table_name}
                 done
-                echo -e >> ${table_name}
+                printf -e >> ${table_name}
             else
-                echo '#> insert syntax error: should be INSERT INTO table_name VALUES data_by_order.'
+                printf '#> \e[41mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
             fi
         else
-            echo '#> insert syntax error: should be INSERT INTO table_name VALUES data_by_order.'
+            printf '#> \e[41mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
         fi
     else
-        echo '#> insert syntax should be INSERT INTO table_name VALUES data_by_order.'
+        printf '#> \e[41mInsert syntax should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
     fi
     read_commands
 }

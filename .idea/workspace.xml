@@ -2,21 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09659741-fcbc-4832-a9b7-1092b95f2ccd" name="Default Changelist" comment="Select Table..in progress">
-      <change afterPath="$PROJECT_DIR$/.idea/Database-Engine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/bashsupport_project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/hardworker.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database_helpers/users_login.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.sh" beforeDir="false" afterPath="$PROJECT_DIR$/application.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/change_prompt.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/currentCommand" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/database_helpers/create_database.sh" beforeDir="false" afterPath="$PROJECT_DIR$/database_helpers/create_database.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_helpers/drop_database.sh" beforeDir="false" afterPath="$PROJECT_DIR$/database_helpers/drop_database.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_helpers/show_databases.sh" beforeDir="false" afterPath="$PROJECT_DIR$/database_helpers/show_databases.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_helpers/use_database.sh" beforeDir="false" afterPath="$PROJECT_DIR$/database_helpers/use_database.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/general_helper.sh" beforeDir="false" afterPath="$PROJECT_DIR$/general_helper.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table_helpers/get_primary_data.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/get_primary_data.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/table_helpers/select_database.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/select_table.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/create_table.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/create_table.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/delete_from_table.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/delete_from_table.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/drop_table.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/drop_table.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/insert_into_table.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/insert_into_table.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/read_data.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/read_data.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/select_table.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/select_table.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_helpers/update_table.sh" beforeDir="false" afterPath="$PROJECT_DIR$/table_helpers/update_table.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,19 +32,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application.sh">
+        <entry file="file://$PROJECT_DIR$/database_helpers/create_database.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="187">
+              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database_helpers/use_database.sh">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database_helpers/drop_database.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+            <state relative-caret-position="119">
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -50,45 +52,64 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database_helpers/show_databases.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="170">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database_helpers/create_database.sh">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/database_helpers/use_database.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database_helpers/drop_database.sh">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/table_helpers/create_table.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            <state relative-caret-position="119">
+              <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>\e[91m</find>
+      <find>echo</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>printf</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/database_helpers" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/table_helpers/select_database.sh" />
-        <option value="$PROJECT_DIR$/table_helpers/select_table.sh" />
         <option value="$PROJECT_DIR$/table_helpers/get_primary_data.sh" />
-        <option value="$PROJECT_DIR$/table_helpers/insert_into_table.sh" />
         <option value="$PROJECT_DIR$/currentCommand" />
+        <option value="$PROJECT_DIR$/database_helpers/users_login.sh" />
         <option value="$PROJECT_DIR$/general_helper.sh" />
         <option value="$PROJECT_DIR$/application.sh" />
-        <option value="$PROJECT_DIR$/database_helpers/show_databases.sh" />
-        <option value="$PROJECT_DIR$/database_helpers/create_database.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/update_table.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/select_table.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/insert_into_table.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/read_data.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/delete_from_table.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/drop_table.sh" />
         <option value="$PROJECT_DIR$/database_helpers/drop_database.sh" />
+        <option value="$PROJECT_DIR$/database_helpers/create_database.sh" />
         <option value="$PROJECT_DIR$/database_helpers/use_database.sh" />
+        <option value="$PROJECT_DIR$/database_helpers/show_databases.sh" />
+        <option value="$PROJECT_DIR$/table_helpers/create_table.sh" />
       </list>
     </option>
   </component>
@@ -159,7 +180,7 @@
       <option name="presentableId" value="Default" />
       <updated>1552189504904</updated>
       <workItem from="1552189507907" duration="1164000" />
-      <workItem from="1552221426521" duration="4766000" />
+      <workItem from="1552221426521" duration="8434000" />
     </task>
     <task id="LOCAL-00001" summary="Select Table..in progress">
       <created>1552190629062</created>
@@ -172,7 +193,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5930000" />
+    <option name="totallyTimeSpent" value="9598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1366" height="738" extended-state="6" />
@@ -182,7 +203,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32840723" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -190,7 +211,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32840723" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.26108375" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.44334975" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32840723" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -213,34 +234,10 @@
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/table_helpers/select_table.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/change_prompt.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table_helpers/get_primary_data.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table_helpers/insert_into_table.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table_helpers/read_data.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -249,39 +246,106 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/general_helper.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+        <state relative-caret-position="427">
+          <caret line="88" column="70" selection-start-line="88" selection-start-column="70" selection-end-line="88" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="357">
+          <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database_helpers/drop_database.sh">
+    <entry file="file://$PROJECT_DIR$/table_helpers/delete_from_table.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="614">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database_helpers/create_database.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database_helpers/show_databases.sh">
+    <entry file="file://$PROJECT_DIR$/table_helpers/drop_table.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="187">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table_helpers/read_data.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table_helpers/select_table.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database_helpers/users_login.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table_helpers/update_table.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table_helpers/get_primary_data.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table_helpers/insert_into_table.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database_helpers/use_database.sh">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database_helpers/create_database.sh">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database_helpers/drop_database.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database_helpers/show_databases.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table_helpers/create_table.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
         </state>
       </provider>
     </entry>
