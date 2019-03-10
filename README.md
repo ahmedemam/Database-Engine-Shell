@@ -1,19 +1,18 @@
 ## Database Engine
+You can use the following commands ( case sensitive )
+CREATE DATABASE db_name
+USE DATABASE db_name
+DROP DATABASE db_name
+SHOW DATABASES
+...
+CREATE TABLE table_name col_name data_type col_name data_type 
+and it will ask for the primary key 
+INSERT INTO table_name VALUES data data 
+You can use - for null values 
+UPDATE TABLE table_name primary_key data data data
+DELETE FROM TABLE primary_key
+DROP TABLE table_name
+SELECT ALL FROM table_name
+SELECT ROW FROM table_name primary_key
+EXIT to exit application
 
-1. Create database
-   A. Ask for its name
-   B. Check if this name doesn't exist
-2. Use database
-   A. Create table ( ask for its name, number of columns, their names and data type ( int./string), and primary key)
-   B. Display table
-   C. Delete table
-   D. Insert into table ( make all the required checks for the primary key and data types)
-   E. Update table ( make all the required checks for primary key and data type)
-3. Show available database
-4. Delete database
-   \*\* Use menus as much as you can
-
-- Any GUI is a bonus
-- SQL like statement is a bonus
-
-**Any plagiarism will not be accepted at all, and all included parties will be highly punished \*\***
