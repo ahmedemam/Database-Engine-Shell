@@ -14,6 +14,7 @@
 . ./database_helpers/use_database.sh
 . ./database_helpers/drop_database.sh
 . ./database_helpers/show_databases.sh
+. ./clear.sh
 
 
 function read_commands () {
@@ -24,7 +25,7 @@ function read_commands () {
         #check if the file is empty to change the prompt corresponding to its state
         if [[ ! -s $CURRENT_COMMAND ]]
         then
-            read -p $'\e[0;1;93m##_Shell> ' command
+            read -p $'\e[0;1;93m##_Shell>'"${DATABASE_CURSOR}" command
         else
             read -p $'\e[38;5;100m....' command
         fi
@@ -100,6 +101,9 @@ function read_commands () {
     elif [[ ${commands[0]} == "DROP" ]]
     then
         drop_table "$(echo ${commands[@]})"
+    elif [[ ${commands[0]} == "CLEAR" ]]
+    then
+        clear_screen
     else
         printf "#>\e[38;5;196mSYNTAX ERROR:  input is unkown command.\e[49m\n"
         read_commands

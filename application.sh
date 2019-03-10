@@ -7,12 +7,13 @@ DATABASES_DIRECTORY="${ROOT_HOME_DIRECTORY}/Databases"
 USERS_FILES_PRIVILEGES="$ROOT_HOME_DIRECTORY/users_data"
 #Current Command File
 CURRENT_COMMAND="$ROOT_HOME_DIRECTORY/currentCommand"
-
 # Global Error/Exception
 GLOBAL_EXCEPTION='#> exception:'
 GLOBAL_MESSAGE='#> '
 # Database Use/In Now
 DATABASE_CURSOR=''
+# CURRENT RUNNING FILE : application.sh
+CURRENT_RUNNER="$PWD/application.sh"
 
 . ./general_helper.sh
 # create files and folders for 1st time application

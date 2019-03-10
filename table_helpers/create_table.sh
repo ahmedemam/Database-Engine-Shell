@@ -21,6 +21,8 @@ function create_table () {
                     if [[ ${commands[$i]} != "int" ]] && [[ ${commands[$i]} != "string" ]]
                     then
                         printf "#> \e[38;5;196m Please: Specify Valid Data Type.\e[49m\n"
+                        rm "$table_name"
+                        rm ${commands[2]}
                         read_commands
                         break
                     fi
@@ -41,8 +43,8 @@ function create_table () {
         done
         printf "#> \e[38;5;82m TABLE CREATED SUCCESSFULLY.\e[49m\n"
     else
-            printf '#> \e[38;5;196m create syntax should be CREATE TABLE table_name col_name data_type.\e[49m\n'
+        printf '#> \e[38;5;196m create syntax should be CREATE TABLE table_name col_name data_type.\e[49m\n'
     fi
-        read_commands
+    read_commands
 }
 

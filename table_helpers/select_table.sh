@@ -34,7 +34,3 @@ function select_all_from_table() {
     unset IFS
             read_commands
 }
-
-# TABLE META
-# COL.NAME|DATATYPE|COL.NAME|DATATYPE|PRIMARY|COL.NAME
-
