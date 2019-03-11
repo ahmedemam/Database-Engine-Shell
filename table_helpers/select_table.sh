@@ -29,7 +29,7 @@ function select_all_from_table() {
             printf "\n\e[0;1;93m"
         done < "${TABLE_NAME}"
     else
-        printf "#>\e[38;5;196m SYNTAX ERROR.\e[38;5;196m"
+        printf "#>\e[48;5;124m SYNTAX ERROR.\e[49m\n"
     fi
     unset IFS
             read_commands

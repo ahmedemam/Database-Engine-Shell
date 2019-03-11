@@ -56,7 +56,7 @@ function select_row(){
             fi
         done < "${TABLE_NAME}"
     else
-        printf "#> SYNTAX ERROR.\n"
+        printf "#> \e[48;5;124mSYNTAX ERROR.\e[49m\n"
     fi
     unset IFS
     read_commands

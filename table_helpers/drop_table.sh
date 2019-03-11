@@ -10,9 +10,11 @@ function drop_table () {
         then
             `rm ${table_name}`
             `rm ${table_meta}`
+                    printf "#> \e[30;48;5;28m TABLE HAS BEEN DROPPED.\e[49m\n"
+
         fi
     else
-        printf "#> \e[38;5;196mSyntax error: DROP TABLE table_name\e[49m\n"
+        printf "#> \e[48;5;124mSyntax error: DROP TABLE table_name\e[49m\n"
     fi
     read_commands
 }

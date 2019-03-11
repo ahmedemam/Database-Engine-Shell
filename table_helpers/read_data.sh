@@ -15,12 +15,12 @@ function read_data () {
             then
                 data+=( ${commands[$i]} )
             else
-                printf '#> \e[41mINVALID DATATYPE\e[49m\n'
+                printf '#> \e[48;5;124mINVALID DATATYPE\e[49m\n'
                 read_commands
             fi
             let "j+=2"
         else
-            printf '#> \e[41mTOO MANY ARGUMENTS.\e[49m\n'
+            printf '#> \e[48;5;124mTOO MANY ARGUMENTS.\e[49m\n'
             #that's because the value of j will be creater than the number of cols in
             read_commands
             break
@@ -30,7 +30,7 @@ function read_data () {
     primary_key_data=${data[fieldNo-1]}
             if [[ ${primary_key_data} == "-" ]]
         then
-            printf '#> \e[38;5;204mPrimary Key Cannot be null value\e[49m\n'
+            printf '#> \e[48;5;124mPrimary Key Cannot be null value\e[49m\n'
             read_commands
             break
         fi
@@ -38,7 +38,7 @@ function read_data () {
     do
         if [[ ${primary_key_data} == ${primary_field} ]]
         then
-            printf '#> \e[38;5;204m${primary_key_data} exists in ${primary} column which is primary.\e[49m\n'
+            printf "#> \e[48;5;124m${primary_key_data} exists in ${primary} column which is primary.\e[49m\n"
             read_commands
             break
         fi
@@ -48,7 +48,7 @@ function read_data () {
     let colNo="(${#cols[@]}-2)/2"
     if [[ ${#data[@]} -lt ${colNo} ]]
     then
-        printf '#> \e[41mTOO LITTLE ARGUMENTS.\e[49m\n'
+        printf '#> \e[48;5;124mTOO LITTLE ARGUMENTS.\e[49m\n'
         read_commands
     fi
 }

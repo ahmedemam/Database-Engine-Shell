@@ -12,7 +12,7 @@ function show_databases() {
             fi
         done
     else
-        GLOBAL_EXCEPTION="#> \e[38;5;160mSORRY, NO DATABASES YET.\e[49m\n"
+        GLOBAL_EXCEPTION="#> \e[48;5;124mSORRY, NO DATABASES YET.\e[49m\n"
         printf "${GLOBAL_EXCEPTION}"
     fi
     read_commands

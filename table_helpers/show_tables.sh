@@ -11,7 +11,7 @@ show_tables () {
     done
     if [[ $n -eq 0 ]]
     then
-            printf ".> \e[38;5;161mThere is no tables yet\e[49m\n"
+            printf ".> \e[48;5;124mThere is no tables yet\e[49m\n"
     fi
     read_commands
 }

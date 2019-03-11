@@ -26,7 +26,7 @@ function read_commands () {
         #check if the file is empty to change the prompt corresponding to its state
         if [[ ! -s $CURRENT_COMMAND ]]
         then
-            read -p $'\e[0;1;93m##_Shell>'"${DATABASE_CURSOR}" command
+            read -p $'\e[38;5;49m##_Shell>'"${DATABASE_CURSOR}" command
         else
             read -p $'\e[38;5;100m....' command
         fi
@@ -73,15 +73,15 @@ function read_commands () {
     elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "DATABASES" ]] && [[ ${#commands[@]} -eq 2 ]]
     then
         show_databases
-    elif ([[ ${commands[0]}  != "SHOW" ]] && [[ ${commands[0]}  != "DROP" ]] && [[ ${commands[0]}  != "USE" ]] && ([[ ${commands[0]}  != "CREATE" ]] && [[ ${commands[1]}  == "DATABASE" ]])) && [[ "`pwd`" == "$ROOT_HOME_DIRECTORY" ]]
+    elif [[ "`pwd`" == "$ROOT_HOME_DIRECTORY" ]]
     then
-        echo "#> please select database"
+        printf "#>\e[48;5;124mPlease select database.\e[49m\n"
         read_commands
     elif [[ ${commands[0]} == "CREATE" ]] && [[ ${commands[1]} == "TABLE" ]]
     then
         create_table "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "INSERT" ]]
-    then 
+    then
         insert_into_table "$(echo ${commands[@]})"
     elif [[ ${commands[0]} == "DELETE" ]]
     then
@@ -102,14 +102,14 @@ function read_commands () {
     elif [[ ${commands[0]} == "DROP" ]]
     then
         drop_table "$(echo ${commands[@]})"
-            elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "TABLES" ]] && [[ ${#commands[@]} -eq 2 ]]
+    elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "TABLES" ]] && [[ ${#commands[@]} -eq 2 ]]
     then
         show_tables
     elif [[ ${commands[0]} == "CLEAR" ]]
     then
         clear_screen
     else
-        printf "#>\e[38;5;196mSYNTAX ERROR:  input is unkown command.\e[49m\n"
+        printf "#>\e[48;5;124mSYNTAX ERROR:  input is unkown command.\e[49m\n"
         read_commands
     fi
 }

@@ -10,9 +10,8 @@ function insert_into_table () {
         then
             table_name=${commands[2]}
             table_meta=${commands[2]}"_meta"
-            echo $table_name
             if [[ ! -f ${table_name} ]]; then
-                printf "#> \e[38;5;196mTABLE NOT EXIST.\e[49m\n"
+                printf "#> \e[48;5;124mTABLE NOT EXIST.\e[49m\n"
                 read_commands
             fi
             if [[ ${commands[3]} == "VALUES" ]] && [[ ${commands[4]} ]]
@@ -30,14 +29,16 @@ function insert_into_table () {
                     echo -n "$field|" >> ${table_name}
                 done
                 echo -e >> ${table_name}
+                printf "#> \e[30;48;5;28m DATA HAS BEEN INSERTED.\e[49m\n"
+                
             else
-                printf '#> \e[e[38;5;196mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
+                printf '#> \e[48;5;124mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
             fi
         else
-            printf '#> \e[e[38;5;196mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
+            printf '#> \e[48;5;124mInsert syntax error: should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
         fi
     else
-        printf '#> \e[38;5;196m”Insert syntax should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
+        printf '#> \e[48;5;124m”Insert syntax should be INSERT INTO table_name VALUES data_by_order.\e[49m\n'
     fi
     read_commands
 }

@@ -12,7 +12,7 @@ function delete_from_table () {
         table_name=${commands[2]}
         table_meta=${commands[2]}"_meta"
         if [[ ! -f ${table_name} ]]; then
-            printf "#> \e[38;5;196mTABLE NOT EXIST.\e[49m\n"
+            printf "#> \e[48;5;124mTABLE NOT EXIST.\e[49m\n"
             read_commands
         fi
         #get the primary key data
@@ -29,7 +29,7 @@ function delete_from_table () {
             then
                 delete_line=""$line_number"d"
                 `sed -i ${delete_line} ${table_name}`
-                printf data has been deleted
+        printf "#> \e[30;48;5;28m DATA HAS BEEN DELETED.\e[49m\n"
                 read_commands
                 break
             fi
@@ -37,11 +37,11 @@ function delete_from_table () {
         done
         if [[ ${p_key_exists} -eq 0 ]]
         then
-            printf primary key doesn\'t exist
+            printf '#> \e[48;5;124mprimary key doesnot exist\e[49m\n'
             read_commands
         fi
     else
-        printf '#> \e[38;5;196mdelete syntax error: should be DELETE FROM table_name primary_key\e[49m\n'
+        printf '#> \e[48;5;124mdelete syntax error: should be DELETE FROM table_name primary_key\e[49m\n'
         read_commands
     fi
     fi

@@ -5,7 +5,7 @@ function create_table () {
     if [[ ${commands[1]} == "TABLE" ]] && [[ ${commands[2]} ]] && [[ ${commands[3]} ]] && [[ ${commands[4]} ]]; then
         table_name=${commands[2]}"_meta"
         if [[ -f ${table_name} ]]; then
-            GLOBAL_EXCEPTION="#> \e[38;5;196m TABLE (NAME) ALREADY EXIST.\e[49m\n"
+            GLOBAL_EXCEPTION="#> \e[48;5;124m TABLE (NAME) ALREADY EXIST.\e[49m\n"
             printf "${GLOBAL_EXCEPTION}"
             read_commands
         fi
@@ -20,7 +20,7 @@ function create_table () {
                 then
                     if [[ ${commands[$i]} != "int" ]] && [[ ${commands[$i]} != "string" ]]
                     then
-                        printf "#> \e[38;5;196m Please: Specify Valid Data Type.\e[49m\n"
+                        printf "#> \e[48;5;124m Please: Specify Valid Data Type.\e[49m\n"
                         rm "$table_name"
                         rm ${commands[2]}
                         read_commands
@@ -31,7 +31,7 @@ function create_table () {
                 then
                     if [[ "${commands[$i]}" == "PRIMARY" ]]
                     then
-                        printf '#> \e[38;5;195m PRIMARY is a reserved word.\e[49m\n'
+                        printf '#> \e[48;5;124m PRIMARY is a reserved word.\e[49m\n'
                         rm "$table_name"
                         rm ${commands[2]}
                         read_commands
@@ -55,7 +55,7 @@ function create_table () {
             done
             if [[ $count -gt 1 ]]
             then
-                printf '#> \e[38;5;196mCol name is dublicated : failed to create table.\e[49m\n'
+                printf '#> \e[48;5;124mCol name is dublicated : failed to create table.\e[49m\n'
                 rm "$table_name"
                 rm ${commands[2]}
                 read_commands
@@ -68,9 +68,9 @@ function create_table () {
             echo -n "PRIMARY|$col" >> ${table_name}
             break
         done
-        printf "#> \e[38;5;82m TABLE CREATED SUCCESSFULLY.\e[49m\n"
+        printf "#> \e[30;48;5;28m TABLE CREATED SUCCESSFULLY.\e[49m\n"
     else
-        printf '#> \e[38;5;196m create syntax should be CREATE TABLE table_name col_name data_type.\e[49m\n'
+        printf '#> \e[48;5;124m create syntax should be CREATE TABLE table_name col_name data_type.\e[49m\n'
     fi
     read_commands
 }
