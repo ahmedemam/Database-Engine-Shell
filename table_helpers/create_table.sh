@@ -34,7 +34,28 @@ function create_table () {
                 echo -n "${commands[$i]}|" >> ${table_name}
             fi
         done
-        printf "\e[38;5;220Please select primary key:\e[49m\n"
+
+        for col in "${columns[@]}"
+        do
+            count=0
+            current_col=$col
+            for coll in "${columns[@]}"
+            do
+                if [[ "$coll" == "$current_col"  ]]
+                then
+                    let "count+=1"
+                fi
+            done
+            if [[ $count -gt 1 ]]
+            then
+                printf '#> \e[38;5;196mCol name is dublicated : failed to create table.\e[49m\n'
+                rm "$table_name"
+                rm ${commands[2]}
+                read_commands
+            fi
+        done
+
+        printf "\e[38;5;220mPlease select primary key:\e[49m\n"
         select col in ${columns[@]}
         do
             printf "$col selected"
