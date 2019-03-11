@@ -29,12 +29,19 @@ function create_table () {
                 fi
                 if [[ $(($i % 2)) -ne "0" ]]
                 then
+                    if [[ "${commands[$i]}" == "PRIMARY" ]]
+                    then
+                        printf '#> \e[38;5;195m PRIMARY is a reserved word.\e[49m\n'
+                        rm "$table_name"
+                        rm ${commands[2]}
+                        read_commands
+                    fi
                     columns+=( ${commands[$i]} )
                 fi
                 echo -n "${commands[$i]}|" >> ${table_name}
             fi
         done
-
+        
         for col in "${columns[@]}"
         do
             count=0
