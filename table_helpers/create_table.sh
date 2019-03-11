@@ -54,7 +54,6 @@ function create_table () {
                 read_commands
             fi
         done
-
         printf "\e[38;5;220mPlease select primary key:\e[49m\n"
         select col in ${columns[@]}
         do

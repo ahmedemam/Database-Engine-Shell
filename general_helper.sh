@@ -8,6 +8,7 @@
 . ./table_helpers/read_data.sh
 . ./table_helpers/select_table.sh
 . ./table_helpers/update_table.sh
+. ./table_helpers/show_tables.sh
 # . ./table_helpers/select_one.sh
 . ./table_helpers/select_row.sh
 . ./database_helpers/create_database.sh
@@ -101,6 +102,9 @@ function read_commands () {
     elif [[ ${commands[0]} == "DROP" ]]
     then
         drop_table "$(echo ${commands[@]})"
+            elif [[ ${commands[0]}  == "SHOW" ]] && [[ ${commands[1]} == "TABLES" ]] && [[ ${#commands[@]} -eq 2 ]]
+    then
+        show_tables
     elif [[ ${commands[0]} == "CLEAR" ]]
     then
         clear_screen
